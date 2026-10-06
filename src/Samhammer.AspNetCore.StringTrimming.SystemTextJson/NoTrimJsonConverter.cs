@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -17,33 +16,6 @@ namespace Samhammer.AspNetCore.StringTrimming.SystemTextJson
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
             JsonSerializer.Serialize(writer, value, options);
-        }
-    }
-
-    internal static class NoTrimJsonSerializerOptions
-    {
-        private static readonly ConditionalWeakTable<JsonSerializerOptions, JsonSerializerOptions> Cache = new();
-
-        public static JsonSerializerOptions Get(JsonSerializerOptions options)
-        {
-            if (!options.Converters.OfType<TrimStringJsonConverter>().Any())
-            {
-                return options;
-            }
-
-            return Cache.GetValue(options, CreateWithoutTrimming);
-        }
-
-        private static JsonSerializerOptions CreateWithoutTrimming(JsonSerializerOptions options)
-        {
-            var copy = new JsonSerializerOptions(options);
-
-            foreach (var converter in copy.Converters.OfType<TrimStringJsonConverter>().ToList())
-            {
-                copy.Converters.Remove(converter);
-            }
-
-            return copy;
         }
     }
 }
