@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Common parts of the Samhammer string trimming for ASP.NET Core MVC: [NoTrim] attribute and the model binder for route, query and form values. Use Samhammer.AspNetCore.StringTrimming.SystemTextJson or Samhammer.AspNetCore.StringTrimming.NewtonsoftJson for JSON bodies.</Description>
+    <PackageTags>aspnetcore;mvc;trim;string;whitespace;model-binding</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>

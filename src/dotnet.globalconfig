@@ -1,0 +1,27 @@
+# Central analyzer configuration for all projects below Sources/.
+is_global = true
+
+#### StyleCop.Analyzers ####
+dotnet_diagnostic.SA0001.severity = none # XML comment analysis disabled
+dotnet_diagnostic.SA1005.severity = none # Single line comment should begin with a space
+dotnet_diagnostic.SA1028.severity = none # Code should not contain trailing whitespace
+dotnet_diagnostic.SA1101.severity = none # Prefix local calls with this
+dotnet_diagnostic.SA1127.severity = none # Generic type constraints should be on their own line
+dotnet_diagnostic.SA1201.severity = none # Elements should appear in the correct order
+dotnet_diagnostic.SA1202.severity = none # Elements should be ordered by access
+dotnet_diagnostic.SA1204.severity = none # Static elements should appear before instance elements
+dotnet_diagnostic.SA1210.severity = none # Using directives should be ordered alphabetically by namespace
+dotnet_diagnostic.SA1413.severity = none # Use trailing comma in multi-line initializers
+dotnet_diagnostic.SA1512.severity = none # Single-line comments should not be followed by blank line
+dotnet_diagnostic.SA1515.severity = none # Single-line comment should be preceded by blank line
+dotnet_diagnostic.SA1600.severity = none # Elements should be documented
+dotnet_diagnostic.SA1601.severity = none # Partial elements should be documented
+dotnet_diagnostic.SA1602.severity = none # Enumeration items should be documented
+dotnet_diagnostic.SA1623.severity = none # Property summary documentation should match accessors
+dotnet_diagnostic.SA1633.severity = none # File should have header
+dotnet_diagnostic.SA1634.severity = none # File header should show copyright
+dotnet_diagnostic.SA1635.severity = none # File header should have copyright text
+dotnet_diagnostic.SA1636.severity = none # File header copyright text should match
+dotnet_diagnostic.SA1637.severity = none # File header should contain file name
+dotnet_diagnostic.SA1638.severity = none # File header file name documentation should match file name
+dotnet_diagnostic.SA1652.severity = none # Enable XML documentation output
