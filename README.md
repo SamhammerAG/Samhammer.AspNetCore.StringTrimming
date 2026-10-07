@@ -47,38 +47,36 @@ var options = new JsonSerializerOptions().AddStringTrimming();          // Syste
 var settings = new JsonSerializerSettings().AddStringTrimming();        // Newtonsoft.Json
 ```
 
-### Opt-out with `[NoTrim]`
+### Opt-out
 
-Use `[NoTrim]` where whitespace is meaningful (markdown, templates, regex, secrets, signatures):
+Use it where whitespace is meaningful (markdown, templates, regex, secrets, signatures).
+
+| Where | System.Text.Json | Newtonsoft.Json |
+| --- | --- | --- |
+| JSON property | `[NoTrim]` | `[JsonConverter(typeof(NoTrimStringJsonConverter))]` |
+| route, query, form parameter or property | `[NoTrim]` | `[NoTrim]` |
 
 ```csharp
 public class MessageContract
 {
     public string Title { get; set; }       // trimmed
 
-    [NoTrim]
+    [NoTrim]                                                // System.Text.Json
+    [JsonConverter(typeof(NoTrimStringJsonConverter))]      // Newtonsoft.Json
     public string Markdown { get; set; }    // kept as sent
 }
 
 public IActionResult Get([FromQuery][NoTrim] string pattern) { ... }
-
-public record SignedLink(string Email, [property: NoTrim] string Signature);
 ```
 
-| `[NoTrim]` on | System.Text.Json | Newtonsoft.Json | Model binder |
-| --- | --- | --- | --- |
-| string property / field | yes | yes | yes |
-| string constructor parameter (via the property) | yes | yes | – |
-| collection / dictionary of strings | yes | yes | – |
-| complex type (nothing inside is trimmed) | yes | no | – |
-| action parameter | – | – | yes |
+With System.Text.Json `[NoTrim]` also works on string collections, dictionaries and complex types (nothing inside is trimmed) and on records (`[property: NoTrim]`).
 
 ### Behavior
 
 - `string.Trim()` is used: all Unicode whitespace incl. line breaks and NBSP; zero-width characters and BOM (U+FEFF) are not removed.
 - JSON: `null` stays `null`, whitespace-only becomes `""`.
 - Route, query, form: like the default binder, empty or whitespace-only values become `null` (`ConvertEmptyStringToNull`).
-- Trimmed: properties, fields, constructor parameters, items of string collections, values of string dictionaries. Dictionary keys and property names are not trimmed.
+- Trimmed: string properties, fields, constructor parameters, items of string collections, values of string dictionaries, root strings. Dictionary keys and property names are not trimmed.
 - Not trimmed: strings inside `object`, `JToken`, `JsonElement` or `dynamic`, raw `Request.Body` reads, `IFormFile` content, headers.
 
 #### System.Text.Json
@@ -88,10 +86,8 @@ public record SignedLink(string Email, [property: NoTrim] string Signature);
 
 #### Newtonsoft.Json
 
-- Uses `TrimStringContractResolver` instead of a converter for `string`. A converter would change how Newtonsoft.Json reads strings (date-like strings would be parsed and reformatted, numbers would no longer be accepted for string properties). With the resolver, strings are read as usual and trimmed afterwards.
-- The existing contract resolver is replaced, keeping its settings. Supported: `DefaultContractResolver` (ASP.NET Core default, camel case), `CamelCasePropertyNamesContractResolver`. A custom resolver must derive from `TrimStringContractResolver`, otherwise an `InvalidOperationException` is thrown.
-- Supported string collections: `string[]`, `List<string>`, `IEnumerable<string>`, `IList<string>`, `ICollection<string>`, `IReadOnlyList<string>`, `IReadOnlyCollection<string>` and concrete `ICollection<string>` types with a default constructor (e.g. `HashSet<string>`). Dictionaries: `Dictionary<string, string>`, `IDictionary<string, string>`, `IReadOnlyDictionary<string, string>` and concrete types with a default constructor.
-- Not trimmed: a string as root value (`[FromBody] string`).
+- A global `JsonConverter` for `string` trims every string, including root values (`[FromBody] string`), collection items and dictionary values (same approach as FUTO).
+- Known limitation: with a converter for `string`, Newtonsoft.Json passes the raw token to the converter. Numbers, booleans and date-like strings (e.g. `"2026-10-01T10:00:00"`, default `DateParseHandling.DateTime`) sent for a string property are rejected with a `JsonSerializationException` (400). Without the package they would be accepted as strings.
 
 ### Things to check when introducing it
 

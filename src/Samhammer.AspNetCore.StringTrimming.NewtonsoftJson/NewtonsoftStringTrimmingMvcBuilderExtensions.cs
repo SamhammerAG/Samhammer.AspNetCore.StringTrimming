@@ -7,7 +7,7 @@ namespace Samhammer.AspNetCore.StringTrimming.NewtonsoftJson
     {
         /// <summary>
         /// Trims leading and trailing whitespace of all string inputs: JSON bodies read with Newtonsoft.Json as well as route, query and form values.
-        /// Use <see cref="NoTrimAttribute"/> to opt out single members or parameters.
+        /// Opt-out: <see cref="NoTrimAttribute"/> for route, query and form, <c>[JsonConverter(typeof(NoTrimStringJsonConverter))]</c> for JSON properties.
         /// Applied after all other configuration of <see cref="MvcNewtonsoftJsonOptions"/>, so it can be called before or after AddNewtonsoftJson().
         /// </summary>
         public static IMvcBuilder AddNewtonsoftJsonStringTrimming(this IMvcBuilder builder)
