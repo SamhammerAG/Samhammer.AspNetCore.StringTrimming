@@ -16,12 +16,14 @@ namespace Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.Test
             var services = new ServiceCollection().AddLogging();
             services.AddControllers()
                 .AddNewtonsoftJsonStringTrimming()
-                .AddNewtonsoftJson(); // order does not matter, trimming is applied in PostConfigure
+                .AddNewtonsoftJson() // order does not matter, trimming is applied in PostConfigure
+                .AddNewtonsoftJsonStringTrimming();
 
             using var provider = services.BuildServiceProvider();
 
             var mvcOptions = provider.GetRequiredService<IOptions<MvcOptions>>().Value;
             mvcOptions.ModelBinderProviders[0].Should().BeOfType<TrimStringModelBinderProvider>();
+            mvcOptions.ModelBinderProviders.OfType<TrimStringModelBinderProvider>().Should().HaveCount(1);
 
             var newtonsoftOptions = provider.GetRequiredService<IOptions<MvcNewtonsoftJsonOptions>>().Value;
             newtonsoftOptions.SerializerSettings.ContractResolver.Should().BeOfType<TrimStringContractResolver>()

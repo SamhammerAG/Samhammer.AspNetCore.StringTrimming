@@ -1,10 +1,9 @@
-# Central analyzer configuration for all projects below Sources/.
+# Central analyzer configuration for all projects below src/.
 is_global = true
 
 #### StyleCop.Analyzers ####
 dotnet_diagnostic.SA0001.severity = none # XML comment analysis disabled
 dotnet_diagnostic.SA1005.severity = none # Single line comment should begin with a space
-dotnet_diagnostic.SA1028.severity = none # Code should not contain trailing whitespace
 dotnet_diagnostic.SA1101.severity = none # Prefix local calls with this
 dotnet_diagnostic.SA1127.severity = none # Generic type constraints should be on their own line
 dotnet_diagnostic.SA1201.severity = none # Elements should appear in the correct order
