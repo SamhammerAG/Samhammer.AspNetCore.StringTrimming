@@ -80,6 +80,7 @@ public record SignedLink(string Email, [property: NoTrim] string Signature);
 - Route, query, form: like the default binder, empty or whitespace-only values become `null` (`ConvertEmptyStringToNull`).
 - Trimmed: properties, fields, constructor parameters, items of string collections, values of string dictionaries. Dictionary keys and property names are not trimmed.
 - Not trimmed: strings inside `object`, `JToken`, `JsonElement` or `dynamic`, raw `Request.Body` reads, `IFormFile` content, headers.
+- Only ASP.NET Core MVC (controllers) is covered. Minimal API endpoints (`app.MapPost(...)`) are not trimmed: they read JSON with `Microsoft.AspNetCore.Http.Json.JsonOptions` (always System.Text.Json) and do not use the MVC model binders. For JSON bodies of Minimal APIs, add the converter there yourself: `builder.Services.ConfigureHttpJsonOptions(o => o.SerializerOptions.AddStringTrimming());` (route and query values stay untrimmed).
 
 #### System.Text.Json
 
