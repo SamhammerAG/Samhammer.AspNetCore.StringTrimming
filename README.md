@@ -69,7 +69,7 @@ public record SignedLink(string Email, [property: NoTrim] string Signature);
 | --- | --- | --- | --- |
 | string property / field | yes | yes | yes |
 | string constructor parameter (via the property) | yes | yes | – |
-| collection / dictionary of strings | yes | yes | – |
+| collection / dictionary of strings | yes | yes | collections only (e.g. `[FromQuery][NoTrim] List<string>`) |
 | complex type (nothing inside is trimmed) | yes | no | – |
 | action parameter | – | – | yes |
 
