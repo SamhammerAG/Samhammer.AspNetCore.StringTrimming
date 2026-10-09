@@ -2,6 +2,7 @@ using AwesomeAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 using Samhammer.AspNetCore.StringTrimming.ModelBinding;
 using Xunit;
 
@@ -10,11 +11,10 @@ namespace Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.Test
     public class MvcBuilderExtensionsTest
     {
         [Fact]
-        public void AddNewtonsoftJsonStringTrimming_RegistersModelBinderAndConverter()
+        public void AddNewtonsoftJsonStringTrimming_RegistersModelBinderAndContractResolver()
         {
             var services = new ServiceCollection().AddLogging();
             services.AddControllers()
-                .AddNewtonsoftJsonStringTrimming()
                 .AddNewtonsoftJsonStringTrimming()
                 .AddNewtonsoftJson(); // order does not matter, trimming is applied in PostConfigure
 
@@ -24,7 +24,8 @@ namespace Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.Test
             mvcOptions.ModelBinderProviders[0].Should().BeOfType<TrimStringModelBinderProvider>();
 
             var newtonsoftOptions = provider.GetRequiredService<IOptions<MvcNewtonsoftJsonOptions>>().Value;
-            newtonsoftOptions.SerializerSettings.Converters.OfType<TrimStringJsonConverter>().Should().HaveCount(1);
+            newtonsoftOptions.SerializerSettings.ContractResolver.Should().BeOfType<TrimStringContractResolver>()
+                .Which.NamingStrategy.Should().BeOfType<CamelCaseNamingStrategy>();
         }
     }
 }
