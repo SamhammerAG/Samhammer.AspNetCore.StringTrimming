@@ -37,6 +37,37 @@ namespace Samhammer.AspNetCore.StringTrimming.Test
             binder.Should().BeNull();
         }
 
+        [Theory]
+        [InlineData(nameof(QueryModel.Value))]
+        [InlineData(nameof(QueryModel.QueryValue))]
+        public void GetBinder_ForBoundStringProperty_ReturnsTrimBinder(string propertyName)
+        {
+            var binder = provider.GetBinder(CreatePropertyContext(propertyName));
+
+            binder.Should().BeOfType<TrimStringModelBinder>();
+        }
+
+        [Theory]
+        [InlineData(nameof(QueryModel.Raw))]
+        [InlineData(nameof(QueryModel.RawQueryValue))]
+        [InlineData(nameof(QueryModel.HeaderValue))]
+        [InlineData(nameof(QueryModel.Number))]
+        public void GetBinder_ForUnsupportedBoundProperty_ReturnsNull(string propertyName)
+        {
+            var binder = provider.GetBinder(CreatePropertyContext(propertyName));
+
+            binder.Should().BeNull();
+        }
+
+        private TestModelBinderProviderContext CreatePropertyContext(string propertyName)
+        {
+            var property = typeof(QueryModel).GetProperty(propertyName)!;
+            var metadata = metadataProvider.GetMetadataForProperty(typeof(QueryModel), propertyName);
+            var bindingInfo = BindingInfo.GetBindingInfo(property.GetCustomAttributes(), metadata) ?? new BindingInfo();
+
+            return new TestModelBinderProviderContext(metadata, bindingInfo, metadataProvider);
+        }
+
         private TestModelBinderProviderContext CreateContext(string methodName)
         {
             var parameter = typeof(TestController).GetMethod(methodName)!.GetParameters().Single();
@@ -79,6 +110,26 @@ namespace Samhammer.AspNetCore.StringTrimming.Test
             public void NotAString([FromQuery] int value)
             {
             }
+        }
+
+        public class QueryModel
+        {
+            public string Value { get; set; }
+
+            [FromQuery]
+            public string QueryValue { get; set; }
+
+            [NoTrim]
+            public string Raw { get; set; }
+
+            [FromQuery]
+            [NoTrim]
+            public string RawQueryValue { get; set; }
+
+            [FromHeader]
+            public string HeaderValue { get; set; }
+
+            public int Number { get; set; }
         }
 
         private sealed class TestModelBinderProviderContext : ModelBinderProviderContext
