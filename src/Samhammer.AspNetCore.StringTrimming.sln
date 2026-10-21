@@ -1,0 +1,61 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.AspNetCore.StringTrimming", "Samhammer.AspNetCore.StringTrimming\Samhammer.AspNetCore.StringTrimming.csproj", "{6F056B40-9D60-4C04-818B-395AFD8CA3CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.AspNetCore.StringTrimming.SystemTextJson", "Samhammer.AspNetCore.StringTrimming.SystemTextJson\Samhammer.AspNetCore.StringTrimming.SystemTextJson.csproj", "{938E111A-26F9-4637-BD8E-033A86492AAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.AspNetCore.StringTrimming.NewtonsoftJson", "Samhammer.AspNetCore.StringTrimming.NewtonsoftJson\Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.csproj", "{E6BCCE9E-6958-42AB-85C5-6C2440A8425E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.AspNetCore.StringTrimming.Test", "Samhammer.AspNetCore.StringTrimming.Test\Samhammer.AspNetCore.StringTrimming.Test.csproj", "{AD0CEFD9-9A96-4BA6-B8F4-9507A8FC8875}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.AspNetCore.StringTrimming.SystemTextJson.Test", "Samhammer.AspNetCore.StringTrimming.SystemTextJson.Test\Samhammer.AspNetCore.StringTrimming.SystemTextJson.Test.csproj", "{6E6D18EB-CE1C-49FC-AE1A-B9223BEA0331}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.Test", "Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.Test\Samhammer.AspNetCore.StringTrimming.NewtonsoftJson.Test.csproj", "{D33314D0-4A2B-40A6-8ED1-DE92A183747E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F555B7D0-C64B-44C3-BAB6-D464874C8D24}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+		..\CHANGELOG.md = ..\CHANGELOG.md
+		Directory.Build.props = Directory.Build.props
+		dotnet.globalconfig = dotnet.globalconfig
+		global.json = global.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F056B40-9D60-4C04-818B-395AFD8CA3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F056B40-9D60-4C04-818B-395AFD8CA3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F056B40-9D60-4C04-818B-395AFD8CA3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F056B40-9D60-4C04-818B-395AFD8CA3CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{938E111A-26F9-4637-BD8E-033A86492AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938E111A-26F9-4637-BD8E-033A86492AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938E111A-26F9-4637-BD8E-033A86492AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938E111A-26F9-4637-BD8E-033A86492AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6BCCE9E-6958-42AB-85C5-6C2440A8425E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6BCCE9E-6958-42AB-85C5-6C2440A8425E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6BCCE9E-6958-42AB-85C5-6C2440A8425E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6BCCE9E-6958-42AB-85C5-6C2440A8425E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0CEFD9-9A96-4BA6-B8F4-9507A8FC8875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0CEFD9-9A96-4BA6-B8F4-9507A8FC8875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0CEFD9-9A96-4BA6-B8F4-9507A8FC8875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0CEFD9-9A96-4BA6-B8F4-9507A8FC8875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6D18EB-CE1C-49FC-AE1A-B9223BEA0331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6D18EB-CE1C-49FC-AE1A-B9223BEA0331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6D18EB-CE1C-49FC-AE1A-B9223BEA0331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6D18EB-CE1C-49FC-AE1A-B9223BEA0331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D33314D0-4A2B-40A6-8ED1-DE92A183747E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33314D0-4A2B-40A6-8ED1-DE92A183747E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33314D0-4A2B-40A6-8ED1-DE92A183747E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33314D0-4A2B-40A6-8ED1-DE92A183747E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

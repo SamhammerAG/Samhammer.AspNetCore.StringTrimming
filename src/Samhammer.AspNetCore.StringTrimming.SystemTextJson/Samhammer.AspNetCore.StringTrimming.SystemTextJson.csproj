@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>System.Text.Json support for the Samhammer string trimming: trims leading and trailing whitespace of all string inputs of ASP.NET Core MVC (JSON body, route, query and form values).</Description>
+    <PackageTags>aspnetcore;mvc;trim;string;whitespace;model-binding;system.text.json</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Samhammer.AspNetCore.StringTrimming\Samhammer.AspNetCore.StringTrimming.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>
